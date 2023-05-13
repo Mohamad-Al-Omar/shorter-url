@@ -1,6 +1,17 @@
 <template>
-  <v-container class="fill-height">
+  <v-container
+    class="fill-height bg--red red--bg"
+    style="background-color: green"
+  >
     <v-responsive class="d-flex align-center text-center fill-height">
+      <v-row>
+        <v-col cols="12" md="6">
+          <text-input v-model="name" name="test" label="test" />
+        </v-col>
+        <v-col cols="12" md="6">
+          <text-input v-model="name2" name="test2" />
+        </v-col>
+      </v-row>
       <v-img height="300" src="@/assets/logo.svg" />
 
       <div class="text-body-2 font-weight-light mb-n1">Welcome to</div>
@@ -59,5 +70,9 @@
 </template>
 
 <script setup>
-//
+import { ref } from "vue";
+import TextInput from "./inputs/TextInput.vue";
+
+const name = ref("Mohamad");
+const name2 = ref("");
 </script>
