@@ -1,12 +1,14 @@
 <template>
   <div class="d-flex align-center">
-    <label :for="name" class="me-5">{{ label }}</label>
     <v-text-field
       v-model="currentValue"
       v-bind="field"
       :name="props.name"
       :error-messages="errorMessage"
+      :label="props.label"
       :hide-details="!errorMessage?.length"
+      solo
+      variant="outlined"
     ></v-text-field>
   </div>
 </template>
@@ -29,6 +31,10 @@ const props = defineProps({
     type: String,
     default: null,
   },
+  rules: {
+    type: [String, Function, Object],
+    default: null,
+  },
 });
 
 const emits = defineEmits(["update:modelValue"]);
@@ -45,7 +51,7 @@ watch(currentValue, (val) => {
 
 const { value, errorMessage } = useField(
   toRef(() => props.name),
-  "required",
+  props.rules,
   {
     initialValue: props.modelValue,
   }
