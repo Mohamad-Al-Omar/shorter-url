@@ -1,5 +1,22 @@
 <template>
-  <v-container
+  <v-container>
+    <v-row justify="center">
+      <v-col cols="12" sm="10" md="6">
+        <v-card>
+          <v-card-title class="text-center text-h4 mt-3 font-weight-bold">
+            Shorter URL
+          </v-card-title>
+          <v-card-subtitle class="text-center text-h6 py-3">
+            Generate a short link for your long link.
+          </v-card-subtitle>
+          <v-card-text>
+            <link-form />
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
+  <!-- <v-container
     class="fill-height bg--red red--bg"
     style="background-color: green"
   >
@@ -11,6 +28,9 @@
         <v-col cols="12" md="6">
           <text-input v-model="name2" name="test2" />
         </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="12"> </v-col>
       </v-row>
       <v-img height="300" src="@/assets/logo.svg" />
 
@@ -66,13 +86,9 @@
         </v-col>
       </v-row>
     </v-responsive>
-  </v-container>
+  </v-container> -->
 </template>
 
 <script setup>
-import { ref } from "vue";
-import TextInput from "./inputs/TextInput.vue";
-
-const name = ref("Mohamad");
-const name2 = ref("");
+import LinkForm from "./forms/LinkForm.vue";
 </script>
