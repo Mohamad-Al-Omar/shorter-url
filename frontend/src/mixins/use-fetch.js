@@ -1,4 +1,5 @@
 import useAxios from "./use-axios";
+import { unref } from "vue";
 
 export default function useFetch() {
   const { get, post } = useAxios();
@@ -18,7 +19,8 @@ export default function useFetch() {
   };
 
   const createShorterLinkAPI = async ({ link }) => {
-    const response = await fakeAPI();
+    const response = await post({ data: { url: unref(link) } });
+    console.log("ddddddddddddd => ", response);
     return response;
   };
 
