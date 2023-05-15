@@ -1,9 +1,9 @@
 <template>
   <div class="text-center">
     <text-input v-model="url" name="url" label="Enter your link"></text-input>
-    <v-btn class="mt-4" color="success" @click="generateLink"
-      >Generate Link</v-btn
-    >
+    <v-btn class="mt-4" color="success" @click="generateLink">
+      Generate Link
+    </v-btn>
   </div>
 </template>
 
@@ -11,13 +11,20 @@
 import { ref } from "vue";
 import TextInput from "@/components/inputs/TextInput";
 import { useForm } from "vee-validate";
-
+import useFetch from "@/mixins/use-fetch";
+import useRegex from "@/mixins/use-regex.js";
 import * as yup from "yup";
+
+const emits = defineEmits(["generateLink"]);
+
+const { createShorterLinkAPI } = useFetch();
 
 const url = ref(null);
 
+const { linkRegex } = useRegex();
+
 const schema = yup.object({
-  url: yup.string().required(),
+  url: yup.string().matches(linkRegex, "URL is not valid").required(),
 });
 const { handleSubmit } = useForm({
   validationSchema: schema,
@@ -29,15 +36,16 @@ const { handleSubmit } = useForm({
 });
 
 const failValidation = ({ values, errors, results }) => {
-  console.log("values => ", values);
-  console.log("errors => ", errors);
-  console.log("results => ", results);
   console.log("fail");
 };
 
-const generateLink = handleSubmit((values) => {
-  //if validates, this code will work; else executes failValidation
+const generateLink = handleSubmit(async (values) => {
   console.log("validated", values);
+  const response = await createShorterLinkAPI({ link: url });
+  if (response.success) {
+    emits("generateLink", response.result.new_link);
+  }
+  console.log("response => ", response);
 }, failValidation);
 </script>
 
