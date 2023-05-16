@@ -5,6 +5,7 @@ micros:
     src: backend
     engine: nodejs16
     dev: npm run dev
+    run: npm run start
     path: api
     primary: false
   - name: frontend
