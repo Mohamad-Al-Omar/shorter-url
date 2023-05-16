@@ -35,7 +35,8 @@ const { handleSubmit } = useForm({
   validateOnChange: false,
 });
 
-const failValidation = ({ values, errors, results }) => {
+// const failValidation = ({ values, errors, results }) => {
+const failValidation = () => {
   console.log("fail");
 };
 
@@ -43,7 +44,7 @@ const generateLink = handleSubmit(async (values) => {
   console.log("validated", values);
   const response = await createShorterLinkAPI({ link: url });
   if (response.success) {
-    emits("generateLink", response.result.new_link);
+    emits("generateLink", response.data.new_url);
   }
   console.log("response => ", response);
 }, failValidation);
