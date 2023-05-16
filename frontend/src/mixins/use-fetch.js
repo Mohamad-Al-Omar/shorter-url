@@ -4,7 +4,7 @@ import { unref } from "vue";
 export default function useFetch() {
   const { get, post } = useAxios();
 
-  const fakeAPI = () => {
+  /*const fakeAPI = () => {
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve({
@@ -16,7 +16,7 @@ export default function useFetch() {
           1000;
       });
     });
-  };
+  };*/
 
   const createShorterLinkAPI = async ({ link }) => {
     const response = await post({ data: { url: unref(link) } });
@@ -24,9 +24,9 @@ export default function useFetch() {
     return response;
   };
 
-  const getShorterLinkAPI = () => {
-    get({ url });
+  const getShorterLinkAPI = ({ shortId }) => {
+    get({ shortId });
   };
 
-  return { createShorterLinkAPI };
+  return { createShorterLinkAPI, getShorterLinkAPI };
 }

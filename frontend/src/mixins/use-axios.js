@@ -6,7 +6,7 @@ export default function useAxios() {
     return response.data;
   };
   const post = async ({ data }) => {
-    const response = await axios.post("", data);
+    const response = await axios.post("/", data);
     return response.data;
   };
   return { get, post };

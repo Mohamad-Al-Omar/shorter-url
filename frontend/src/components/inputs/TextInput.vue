@@ -42,14 +42,15 @@ const emits = defineEmits(["update:modelValue"]);
 const currentValue = ref(props.modelValue);
 
 watch(props.modelValue, (val) => {
-  currentValue = val;
+  currentValue.value = val;
 });
 
 watch(currentValue, (val) => {
   emits("update:modelValue", val);
 });
 
-const { value, errorMessage } = useField(
+// const { value, errorMessage } = useField(
+useField(
   toRef(() => props.name),
   props.rules,
   {
