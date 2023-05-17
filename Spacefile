@@ -12,3 +12,4 @@ micros:
     src: frontend
     engine: vue
     primary: true
+    public: true

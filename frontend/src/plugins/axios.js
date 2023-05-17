@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Full config:  https://github.com/axios/axios#request-config
 axios.defaults.baseURL =
-  process.env.baseURL || process.env.apiUrl || import.meta.env.VITE_API_URL;
+  process.env.VITE_API_URL || import.meta.env.VITE_API_URL || "/api/";
 // axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
