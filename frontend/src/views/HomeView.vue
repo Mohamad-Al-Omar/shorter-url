@@ -12,7 +12,7 @@
           <v-card-text>
             <link-form @generate-link="updateNewLink" />
             <div v-if="link" class="text-center mt-4">
-              your new link is {{ link }}
+              your new link is <a :href="link" target="_blank">{{ link }}</a>
             </div>
           </v-card-text>
         </v-card>
